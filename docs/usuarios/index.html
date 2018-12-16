@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Usuários - Controle de Estoque de Almoxarifado</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Usu\u00e1rios";
+    var mkdocs_page_input_path = "usuarios.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Controle de Estoque de Almoxarifado</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Inicio</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">features</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../geral/">Geral</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../produtos/">Produtos</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">Usuários</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#tela-de-usuarios">Tela de usuários</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#codigo">Código</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../estoque/">Estoque</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../banco_dados/">Banco de Dados</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Controle de Estoque de Almoxarifado</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>features &raquo;</li>
+        
+      
+    
+    <li>Usuários</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="tela-de-usuarios">Tela de usuários</h1>
+<p>Na tela de usuários podemos listar, buscar, inserir, atualizar e apagar usuarios do banco de dados.</p>
+<h3 id="codigo">Código</h3>
+<pre><code>class HUD_usuario(Toplevel):
+    def __init__(self):
+        Toplevel.__init__(self)
+    #_usuario = Tk()
+    #_usuario.wm_title("Cadastro de Usuários")
+
+
+        self.txt_nome = StringVar()
+        self.txt_sobrenome = StringVar()
+        self.txt_email = StringVar()
+        self.txt_cpf = StringVar()
+
+
+        self.lbl_nome = Label(self, text="Nome")
+        self.lbl_sobrenome = Label(self, text="Sobrenome")
+        self.lbl_email = Label(self, text="Email")
+        self.lbl_cpf = Label(self, text="CPF")
+
+        self.ent_nome = Entry(self, textvariable=self.txt_nome)
+        self.ent_sobrenome = Entry(self, textvariable=self.txt_sobrenome)
+        self.ent_email = Entry(self, textvariable=self.txt_email)
+        self.ent_cpf = Entry(self, textvariable=self.txt_cpf)
+
+
+        self.puxar_usuario = str(lista_usuario_geral())
+        self.puxar_usuario_2 = (self.puxar_usuario.replace(" ",""))
+
+        self.list_clientes = Listbox(self)
+        self.list_clientes.insert(1, self.puxar_usuario_2)
+        self.scroll_clientes = Scrollbar(self)
+
+
+        self.btn_listar = Button(self, text="Listar")
+        self.btn_buscar = Button(self, text="Buscar")
+        self.btn_inserir = Button(self, text="Inserir")
+        self.btn_atualizar = Button(self, text="Atualizar")
+        self.btn_apagar = Button(self, text="Apagar")
+        #self.btn_fechar = Button(self, text="Fechar")
+
+
+        self.lbl_nome.grid(row=0, column=0)
+        self.lbl_sobrenome.grid(row=1,column=0)
+        self.lbl_email.grid(row=2,column=0)
+        self.lbl_cpf.grid(row=3,column=0)
+
+
+        self.ent_nome.grid(row=0,column=1,padx=50,pady=50)
+        self.ent_sobrenome.grid(row=1,column=1)
+        self.ent_email.grid(row=2,column=1)
+        self.ent_cpf.grid(row=3, column=1)
+
+
+        self.list_clientes.grid(row=0, column=2, rowspan=10)
+        self.scroll_clientes.grid(row=0, column=6, rowspan= 10)
+
+
+
+        self.btn_listar.grid(row=4, column=0,columnspan=2)
+        self.btn_buscar.grid(row=5, column=0,columnspan=2)
+        self.btn_inserir.grid(row=6, column=0,columnspan=2)
+        self.btn_atualizar.grid(row=7, column=0,columnspan=2)
+        self.btn_apagar.grid(row=8, column=0,columnspan=2)
+        #self.btn_fechar.grid(row=9, column=0,columnspan=2)
+
+        x_pad = 5
+        y_pad = 3
+        width_entry = 30
+
+
+        for child in self.winfo_children():
+            widget_class = child.__class__.__name__
+            if widget_class == "Button":
+                child.grid_configure(sticky="WE", padx=x_pad, pady= y_pad)
+            elif widget_class == "Listblox":
+                child.grid_configure(sticky="NS", padx=x_pad, pady= y_pad)
+            elif widget_class == "Scrollbar":
+                child.grid_configure(sticky="NS", padx=x_pad, pady= y_pad)
+            else:
+                child.grid_configure(sticky="NS", padx=x_pad, pady= y_pad)
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../estoque/" class="btn btn-neutral float-right" title="Estoque">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../produtos/" class="btn btn-neutral" title="Produtos"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../produtos/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../estoque/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>

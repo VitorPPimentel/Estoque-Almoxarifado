@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Produtos - Controle de Estoque de Almoxarifado</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Produtos";
+    var mkdocs_page_input_path = "produtos.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Controle de Estoque de Almoxarifado</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Inicio</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">features</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../geral/">Geral</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">Produtos</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#tela-de-produtos">Tela de Produtos</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#codigo">Código</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../usuarios/">Usuários</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../estoque/">Estoque</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../banco_dados/">Banco de Dados</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Controle de Estoque de Almoxarifado</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>features &raquo;</li>
+        
+      
+    
+    <li>Produtos</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="tela-de-produtos">Tela de Produtos</h1>
+<p>Na tela de produtos é o lugar do projeto em que podemos 
+visualizar, deletar, inserir, alterar e observar os produtos.
+Tem conexão direta com o banco de dados e exibe ao lado direito da tela
+o estoque de produtos.</p>
+<h3 id="codigo">Código</h3>
+<pre><code>class HUD_produto(Toplevel):
+
+    def __init__(self,codigo_produto=0,marca="",quantidade=0,custo=0):
+        Toplevel.__init__(self)
+    #janela_produto = Tk()
+    #janela_produto.wm_title("Entrada e Saida de Produtos")
+
+        self.txt_codigo = StringVar()
+        self.txt_marca = StringVar()
+        self.txt_quantidade = IntVar()
+        self.txt_custo = IntVar()
+
+
+        self.lbl_codigo = Label(self, text="Código do produto")
+        self.lbl_marca = Label(self, text="Marca")
+        self.lbl_quantidade = Label(self, text="Quantidade")
+        self.lbl_custo = Label(self, text="Custo unitário")
+
+
+        self.ent_codigo = Entry(self, textvariable=self.txt_codigo)
+        self.ent_marca = Entry(self, textvariable=self.txt_marca)
+        self.ent_quantidade = Entry(self, textvariable=self.txt_quantidade)
+        self.ent_custo = Entry(self, textvariable=self.txt_custo)
+
+        self.puxar_estoque = str(estoque_geral())
+        self.puxar_estoque_2 = self.puxar_estoque.replace(" ","")
+
+        self.list_produto = Listbox(self)
+        self.list_produto.insert(1,self.puxar_estoque_2)
+        self.scroll_clientes = Scrollbar(self)
+
+
+        self.btn_retirar = Button(self, text="Retirar Produto")
+        self.btn_devolver = Button(self, text="inserir produto",command=inserir_produto)
+        self.btn_visualizar = Button(self, text="Visualizar Estoque")
+        self.btn_atualizar = Button(self, text="atualizar")
+        self.btn_apagar = Button(self, text="apagar")
+        self.btn_fechar = Button(self, text="fechar")
+
+
+        self.lbl_codigo.grid(row=0, column=0)
+        self.lbl_marca.grid(row=1,column=0)
+        self.lbl_quantidade.grid(row=2,column=0)
+        self.lbl_custo.grid(row=3,column=0)
+
+
+        self.ent_codigo.grid(row=0,column=1,padx=50,pady=50)
+        self.ent_marca.grid(row=1,column=1)
+        self.ent_quantidade.grid(row=2,column=1)
+        self.ent_custo.grid(row=3, column=1)
+
+
+        self.list_produto.grid(row=0, column=2, rowspan=10)
+        self.scroll_clientes.grid(row=0, column=6, rowspan= 10)
+
+
+        self.btn_retirar.grid(row=5, column=0,columnspan=2)
+        self.btn_devolver.grid(row=4, column=0,columnspan=2)
+        self.btn_visualizar.grid(row=6, column=0,columnspan=2)
+        self. btn_atualizar.grid(row=7, column=0,columnspan=2)
+        self.btn_apagar.grid(row=8, column=0,columnspan=2)
+        self.btn_fechar.grid(row=9, column=0,columnspan=2)
+
+
+        x_pad = 5
+        y_pad = 3
+        width_entry = 30
+
+
+        for child in self.winfo_children():
+            widget_class = child.__class__.__name__
+            if widget_class == "Button":
+                child.grid_configure(sticky="WE", padx=x_pad, pady= y_pad)
+            elif widget_class == "Listblox":
+                child.grid_configure(sticky="NS", padx=x_pad, pady= y_pad)
+            elif widget_class == "Scrollbar":
+                child.grid_configure(sticky="NS", padx=x_pad, pady= y_pad)
+            else:
+                child.grid_configure(sticky="NS", padx=x_pad, pady= y_pad)
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../usuarios/" class="btn btn-neutral float-right" title="Usuários">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../geral/" class="btn btn-neutral" title="Geral"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../geral/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../usuarios/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>
